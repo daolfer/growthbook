@@ -1,5 +1,5 @@
 # Build the python gbstats package
-FROM python:3.9-slim AS pybuild
+FROM python:3.11.2-slim AS pybuild
 WORKDIR /usr/local/src/app
 COPY ./packages/stats .
 RUN \
@@ -29,8 +29,11 @@ RUN \
 
 
 # Package the full app together
-FROM python:3.9-slim
+FROM ubuntu:latest
 WORKDIR /usr/local/src/app
+RUN apt-get update && apt-get install -y software-properties-common gcc && \
+    add-apt-repository -y ppa:deadsnakes/ppa
+RUN apt-get update && apt-get install -y python3.6 python3-distutils python3-pip python3-apt
 RUN apt-get update && \
   apt-get install -y wget gnupg2 && \
   echo "deb https://deb.nodesource.com/node_16.x buster main" > /etc/apt/sources.list.d/nodesource.list && \
