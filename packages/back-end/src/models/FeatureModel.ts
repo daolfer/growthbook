@@ -1,7 +1,5 @@
-import { FilterQuery } from "mongodb";
-import mongoose from "mongoose";
+import mongoose, { FilterQuery } from "mongoose";
 import cloneDeep from "lodash/cloneDeep";
-import omit from "lodash/omit";
 import {
   FeatureDraftChanges,
   FeatureEnvironment,
@@ -89,7 +87,7 @@ const FeatureModel = mongoose.model<FeatureDocument>("Feature", featureSchema);
  * @param doc
  */
 const toInterface = (doc: FeatureDocument): FeatureInterface =>
-  omit(doc.toJSON(), ["__v", "_id"]);
+  doc.toJSON<FeatureInterface>();
 
 export async function getAllFeatures(
   organization: string,

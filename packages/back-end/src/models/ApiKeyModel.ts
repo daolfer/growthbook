@@ -99,7 +99,7 @@ export async function createApiKey({
     dateCreated: new Date(),
   });
 
-  return doc.toJSON();
+  return doc.toJSON<ApiKeyInterface>();
 }
 
 export async function deleteApiKeyById(organization: string, id: string) {
@@ -126,7 +126,7 @@ export async function getApiKeyByIdOrKey(
   const doc = await ApiKeyModel.findOne(
     id ? { organization, id } : { organization, key }
   );
-  return doc ? doc.toJSON() : null;
+  return doc ? doc.toJSON<ApiKeyInterface>() : null;
 }
 
 export async function lookupOrganizationByApiKey(
@@ -150,7 +150,7 @@ export async function lookupOrganizationByApiKey(
   });
 
   if (!doc || !doc.organization) return {};
-  return doc.toJSON();
+  return doc.toJSON<ApiKeyInterface>();
 }
 
 export async function getAllApiKeysByOrganization(
@@ -163,7 +163,7 @@ export async function getAllApiKeysByOrganization(
     { encryptionKey: 0 }
   );
   return docs.map((k) => {
-    const json = k.toJSON();
+    const json = k.toJSON<ApiKeyInterface>();
     if (json.secret) {
       json.key = "";
     }

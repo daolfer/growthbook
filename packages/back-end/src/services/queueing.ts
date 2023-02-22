@@ -5,6 +5,8 @@ let agendaInstance: Agenda;
 
 export const getAgendaInstance = (): Agenda => {
   if (!agendaInstance) {
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
     const config: AgendaConfig = {
       // eslint-disable-next-line @typescript-eslint/ban-ts-comment
       // @ts-ignore - For some reason the Mongoose MongoDB instance does not match (missing 5 properties)

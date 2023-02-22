@@ -30,7 +30,7 @@ const SDKPayloadModel = mongoose.model<SDKPayloadDocument>(
 );
 
 function toInterface(doc: SDKPayloadDocument): SDKPayloadInterface | null {
-  const json = doc.toJSON();
+  const json = doc.toJSON<SDKStringifiedPayloadInterface>();
   try {
     const contents = JSON.parse(json.contents);
 

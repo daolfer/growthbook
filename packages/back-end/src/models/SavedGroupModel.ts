@@ -55,7 +55,7 @@ export async function createSavedGroup(
     dateCreated: new Date(),
     dateUpdated: new Date(),
   });
-  return newGroup.toJSON();
+  return newGroup.toJSON<SavedGroupInterface>();
 }
 
 export async function getAllSavedGroups(
@@ -74,7 +74,7 @@ export async function getSavedGroupById(
     organization: organization,
   });
 
-  return savedGroup?.toJSON() || null;
+  return savedGroup?.toJSON<SavedGroupInterface>() || null;
 }
 
 export async function updateSavedGroup(

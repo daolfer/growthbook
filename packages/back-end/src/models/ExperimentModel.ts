@@ -1,4 +1,3 @@
-import omit from "lodash/omit";
 import uniqBy from "lodash/uniqBy";
 import each from "lodash/each";
 import mongoose, { FilterQuery } from "mongoose";
@@ -149,7 +148,7 @@ const ExperimentModel = mongoose.model<ExperimentDocument>(
  * @param doc
  */
 const toInterface = (doc: ExperimentDocument): ExperimentInterface =>
-  omit(doc.toJSON(), ["__v", "_id"]);
+  doc.toJSON<ExperimentInterface>();
 
 /**
  * Wraps Mongo's find method and returns results as ExperimentInterface[] with projections

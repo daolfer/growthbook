@@ -39,7 +39,7 @@ export async function createReport(
     dateUpdated: new Date(),
   });
 
-  return report.toJSON();
+  return report.toJSON<ReportInterface>();
 }
 
 export async function getReportById(
@@ -51,7 +51,7 @@ export async function getReportById(
     id,
   });
 
-  return report ? report.toJSON() : null;
+  return report ? report.toJSON<ReportInterface>() : null;
 }
 
 export async function getReportsByOrg(
